@@ -17,7 +17,7 @@ Open `http://localhost:3000`.
 npm run build
 ```
 
-The static site is generated in `out/`. On Vercel, create a project with `lupio` as its Root Directory and use the Next.js framework preset.
+The static site is generated in `out/`. On Vercel, import this repository, keep Root Directory at `./`, and use the Next.js framework preset.
 
 ## Assets
 
