@@ -4,8 +4,10 @@ import { useRef } from "react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AboutMe from "./AboutMe";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function LupioPortfolio() {
   const root = useRef<HTMLDivElement>(null);
@@ -42,6 +44,35 @@ export default function LupioPortfolio() {
     return () => window.removeEventListener("pointermove", onPointerMove);
   }, { scope: root });
 
+  useGSAP(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.from(".about-nav > *", {
+      y: -22,
+      autoAlpha: 0,
+      duration: 0.55,
+      stagger: 0.07,
+      ease: "power2.out",
+      scrollTrigger: { trigger: ".about", start: "top 75%", once: true },
+    });
+    gsap.from(".about-reveal", {
+      y: 52,
+      autoAlpha: 0,
+      duration: 0.9,
+      stagger: 0.13,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".about-layout", start: "top 73%", once: true },
+    });
+    gsap.from(".about-photo", {
+      y: 110,
+      scale: 0.95,
+      autoAlpha: 0,
+      duration: 1.15,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".about-layout", start: "top 73%", once: true },
+    });
+  }, { scope: root });
+
   return (
     <div className="site" ref={root}>
       <div className="intro" aria-hidden="true">
@@ -61,6 +92,7 @@ export default function LupioPortfolio() {
           <div className="hero-bottom-right hero-reveal"><span>BUILT WITH PURPOSE</span><ArrowUpRight size={19} /></div>
           <div className="hero-scroll hero-reveal" aria-hidden="true">THE STORY STARTS HERE <ArrowDown size={15} /></div>
         </section>
+        <AboutMe />
       </main>
     </div>
   );
