@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AboutMe from "./AboutMe";
+import PortfolioPages from "./PortfolioPages";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -55,6 +56,9 @@ export default function LupioPortfolio() {
       ease: "power2.out",
       scrollTrigger: { trigger: ".about", start: "top 75%", once: true },
     });
+    gsap.utils.toArray<HTMLElement>(".scroll-reveal").forEach((element) => {
+      gsap.from(element, { y: 45, autoAlpha: 0, duration: 0.75, ease: "power2.out", scrollTrigger: { trigger: element, start: "top 88%", once: true } });
+    });
     gsap.from(".about-reveal", {
       y: 52,
       autoAlpha: 0,
@@ -92,7 +96,11 @@ export default function LupioPortfolio() {
           <div className="hero-bottom-right hero-reveal"><span>BUILT WITH PURPOSE</span><ArrowUpRight size={19} /></div>
           <div className="hero-scroll hero-reveal" aria-hidden="true">THE STORY STARTS HERE <ArrowDown size={15} /></div>
         </section>
+        <nav className="about-nav" aria-label="Portfolio sections">
+          <a href="#home">HOME</a><a href="#about">ABOUT ME</a><a href="#experience">EXPERIENCE</a><a href="#project">PROJECT</a><a href="#certificate">CERTIFICATE</a><a href="#contact">CONTACT</a>
+        </nav>
         <AboutMe />
+        <PortfolioPages />
       </main>
     </div>
   );

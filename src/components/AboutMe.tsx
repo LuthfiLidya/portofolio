@@ -15,15 +15,6 @@ export default function AboutMe() {
   return (
     <section className="about" id="about" aria-labelledby="about-title">
       <div className="about-grain" aria-hidden="true" />
-      <nav className="about-nav" aria-label="Portfolio sections">
-        <a href="#home">HOME</a>
-        <a className="active" href="#about" aria-current="location">ABOUT ME</a>
-        <span>PROJECT</span>
-        <span>EXPERIENCE</span>
-        <span>ACHIEVEMENT</span>
-        <span>CONTACT</span>
-      </nav>
-
       <div className="about-layout">
         <div className="about-identity">
           <h2 id="about-title" className="about-title about-reveal">ABOUT ME</h2>
